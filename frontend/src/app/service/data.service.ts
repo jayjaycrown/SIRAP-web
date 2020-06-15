@@ -86,6 +86,22 @@ export class DataService {
       );
   }
 
+  uploadImage(image: File) {
+    const uploadData = new FormData();
+    uploadData.append('image', image);
+    return this.http.post<{ imageUrl: string; imagePath: string }>(
+      ' https://us-central1-edupass-d2cd1.cloudfunctions.net/storeImage ',
+      uploadData
+      // { headers: { Authorization: 'Bearer ' + token } }
+    );
+    // return this.authService.token.pipe(
+    //   take(1),
+    //   switchMap(token => {
+    //   })
+    // );
+  }
+
+
   addUser(
     name: string,
     matric: string,
@@ -93,14 +109,15 @@ export class DataService {
     expiryDate: Date,
     admission: Date,
     faculty: string,
-    department: string
+    department: string,
+    passport: string
   ) {
     let generatedId: string;
     const newUser = new User(
       Math.random().toString(),
       name,
       matric,
-      'https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200',
+      passport,
       phone,
       expiryDate,
       admission,
