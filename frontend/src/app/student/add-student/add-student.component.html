@@ -1,0 +1,68 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Registration Successfull</strong>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Add Student Record</h2>
+        </div>
+        <div class="card-content p-3">
+          <form [formGroup]="formTemplate" (submit)="onsubmit(formTemplate.value)">
+            <div class="text-center">
+              <img [src]="imgSrc" alt="" width="400px" (click)="fileUploader.click()">
+            </div>
+            <div class="form-group">
+              <label for="">Name</label>
+              <input type="text" formControlName="name" class="form-control" name="name" required>
+            </div>
+            <div class="form-group d-none">
+              <label>Upload Image</label>
+              <input type="file" accept="image/*" class="form-control" #fileUploader name="passport"
+                (change)="showPreview($event)" formControlName="passport">
+              <!-- <div class="input-group">
+                <span class="btn btn-default btn-file">
+                  Browse...<input type="file" (change)="onImagePicked($event)" required>
+                </span>
+              </div> -->
+            </div>
+            <div class="form-group">
+              <label for="">Matriculation Number</label>
+              <input type="text" formControlName="matric" class="form-control" name="matric" required>
+            </div>
+            <div class="form-group">
+              <label for="">Phone</label>
+              <input type="number" formControlName="phone" class="form-control" name="phone" required>
+            </div>
+            <div class="form-group">
+              <label for="">Admission Date</label>
+              <input type="text" formControlName="admission" placeholder="Datepicker" name="admission"
+                class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }" required>
+            </div>
+            <div class="form-group">
+              <label for="">ID Expiry Date</label>
+              <input type="text" formControlName="expiryDate" name="expiryDate" placeholder="Datepicker"
+                class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true }" required>
+            </div>
+            <div class="form-group">
+              <label for="">Department</label>
+              <input type="text" formControlName="department" class="form-control" name="department" required>
+            </div>
+            <div class="form-group">
+              <label for="">Faculty</label>
+              <input type="text" formControlName="faculty" class="form-control" name="faculty" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-lg btn-block">Save
+                Record</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
