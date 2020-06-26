@@ -8,7 +8,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { AppRoutingModule } from './app.routing.module';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 
 import { AppComponent } from './app.component';
 import { StudentListComponent } from './student/student-list/student-list.component';

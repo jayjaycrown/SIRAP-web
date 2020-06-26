@@ -14,7 +14,7 @@
         <div class="card-content p-3">
           <form [formGroup]="formTemplate" (submit)="onsubmit(formTemplate.value)">
             <div class="text-center">
-              <img [src]="imgSrc" alt="" width="400px" (click)="fileUploader.click()">
+              <img [src]="imgSrc" alt="" width="400px" (click)="fileUploader.click()" style="cursor: pointer;">
             </div>
             <div class="form-group">
               <label for="">Name</label>

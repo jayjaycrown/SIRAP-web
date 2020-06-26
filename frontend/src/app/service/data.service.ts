@@ -24,6 +24,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class DataService {
 
+
   // tslint:disable-next-line: variable-name
   // private _users = new BehaviorSubject<User[]>([]);
 
@@ -35,12 +36,24 @@ export class DataService {
 
   constructor(private firestore: AngularFirestore) { }
 
+  // test() {
+  //   return this.firestore.collection('cities').doc('SF').set({
+  //     name: 'San Francisco', state: 'CA', country: 'USA',
+  //     capital: false, population: 860000,
+  //     regions: ['west_coast', 'norcal']
+  //   });
+  // }
+
   getUserDetails() {
     return this.firestore.collection('Students').snapshotChanges();
   }
-  getUser(recordID) {
-    return this.firestore.doc('Students/' + recordID).snapshotChanges();
+  async getUser(recordID) {
+    // tslint:disable-next-line: prefer-const
+    let document = await this.firestore.doc('Students/' + recordID).get().toPromise();
+    return document.data();
+    // return this.firestore.collection('Students').doc(recordID).get();
   }
+
   insertUserDetails(userDetails) {
     return this.firestore.collection('Students').add(userDetails);
     // this.userDetailsList.push(userDetails);

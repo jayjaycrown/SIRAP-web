@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class AddStudentComponent implements OnInit {
 
-  imgSrc = 'assets/img/bg.jpg';
+  imgSrc = 'assets/img/upload.jpg';
   form: FormGroup;
   selectedImage: any;
   successMessage = false;
@@ -69,6 +69,7 @@ export class AddStudentComponent implements OnInit {
 
   onsubmit(formValue) {
     console.log(formValue);
+    alert('Please wait... I will let you know if there is an error...');
     // if (!this.formTemplate.valid) {
     //   return;
     // }
@@ -80,15 +81,17 @@ export class AddStudentComponent implements OnInit {
           // tslint:disable-next-line: no-string-literal
           formValue['passport'] = url;
           this.data.insertUserDetails(formValue).then(resp => {
+            alert('Upload successful...Yipee!!!');
             console.log(resp);
             this.resetForm();
+            this.successMessage = true;
+            this.router.navigateByUrl('/students');
           })
             .catch(error => {
               console.log(error);
+              alert(error);
             });
           this.resetForm();
-          this.successMessage = true;
-          this.router.navigateByUrl('/students');
         });
       })
     ).subscribe(() => {

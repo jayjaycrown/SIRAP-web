@@ -12,7 +12,9 @@ export class StudentListComponent implements OnInit {
   constructor(private data: DataService) { }
 
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.data.test().then().catch();
+
     this.data.getUserDetails().subscribe(data => {
 
       this.students = data.map(e => {
